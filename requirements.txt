@@ -12,7 +12,8 @@ streamlit>=1.28.0
 langchain>=0.1.0
 langchain-core
 langchain-community
-langchain-google-vertexai>=0.1.0
+langchain-google-genai>=4.2.0
+langchain-text-splitters
 
 # -----------------------------------------------------------------------------
 # Vector Database (Design Doc §5.1, §5.2)

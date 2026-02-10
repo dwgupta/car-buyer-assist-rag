@@ -4,16 +4,26 @@ Car Buyer Assist RAG - Learning Page
 A simple educational page that introduces the application.
 """
 
+import logging
+
 import streamlit as st
 
+from config import APP_DESCRIPTION, APP_TITLE, EXAMPLE_QUERIES, VEHICLE_MODELS
+from utils.logging_config import setup_logging
+
+setup_logging()
+logger = logging.getLogger(__name__)
+
 st.set_page_config(
-    page_title="Car Buyer Assist - Learn",
+    page_title=f"{APP_TITLE} - Learn",
     page_icon="🚗",
     layout="wide",
 )
 
-st.title("Car Buyer Assist")
-st.caption("Get instant, accurate answers about Toyota vehicles using conversational AI")
+st.title(APP_TITLE)
+st.caption(APP_DESCRIPTION)
+
+logger.debug("Rendering learning page")
 
 st.divider()
 
@@ -23,10 +33,8 @@ st.write(
     "responses, so you can skip manual PDF searching and get accurate information on demand."
 )
 
-st.write("**Models covered:** Corolla, Camry, RAV4, Highlander, Prius, Prius Prime, Tacoma, bZ4X")
+st.write("**Models covered:** " + ", ".join(VEHICLE_MODELS))
 
 st.write("**Example questions:**")
-st.markdown("- What is the fuel efficiency of the Camry hybrid?")
-st.markdown("- Compare RAV4 and Highlander for families")
-st.markdown("- What safety features does the Corolla have?")
-st.markdown("- What Toyota vehicle is best for a family of five?")
+for query in EXAMPLE_QUERIES:
+    st.markdown(f"- {query}")

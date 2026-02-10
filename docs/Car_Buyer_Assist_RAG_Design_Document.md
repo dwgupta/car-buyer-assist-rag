@@ -367,12 +367,14 @@ Retrieval quality indicators (similarity score distribution)
 
 | streamlit>=1.28.0
 langchain>=0.1.0
-langchain-google-vertexai>=0.1.0
+langchain-google-genai>=4.2.0
 chromadb>=0.4.0
 langsmith>=0.1.0
 pypdf>=3.0.0
 google-cloud-aiplatform>=1.38.0 |
 | --- |
+
+Vertex AI (embeddings and LLM) is used via `langchain-google-genai` with `vertexai=True` and project/region from environment (`GOOGLE_PROJECT_ID`, `GOOGLE_REGION`).
 
 ## 5.3 Environment Configuration
 
