@@ -1,3 +1,6 @@
 *venv
 desktop.ini
 .env
+__pycache__/
+chroma_db/
+data/

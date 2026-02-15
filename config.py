@@ -40,3 +40,11 @@ EXAMPLE_QUERIES = [
     "What safety features does the Corolla have?",
     "What Toyota vehicle is best for a family of five?",
 ]
+
+# Conversation starters for the Interactive Assistant (3–4 items, aligned with BRD sample queries)
+CONVERSATION_STARTERS = [
+    "What are the safety features of the Corolla?",
+    "What is the fuel efficiency of the Camry hybrid?",
+    "Compare RAV4 and Highlander for families",
+    "What is the starting price of the Corolla?",
+]
