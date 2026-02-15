@@ -106,6 +106,13 @@ def get_documents_in_knowledge_base() -> set[str]:
         return set()
 
 
+def get_models_in_knowledge_base() -> list[str]:
+    """Return sorted list of unique vehicle model names present in the knowledge base."""
+    sources = get_documents_in_knowledge_base()
+    models = {_extract_model_name(f) for f in sources}
+    return sorted(models - {"Unknown"}) if models else []
+
+
 def clear_chromadb_knowledge_base() -> bool:
     """Delete the ChromaDB collection (clears all chunks). Returns True on success."""
     try:
