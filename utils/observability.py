@@ -82,6 +82,7 @@ class CategoryMetrics:
     success_count: int
     avg_latency_s: float | None
     total_tokens: int
+    total_cost: float = 0.0
 
 
 @dataclass
@@ -165,7 +166,11 @@ def _compute_metrics(rows: list[RunRow]) -> CategoryMetrics:
     latencies = [r.latency_s for r in rows if r.latency_s is not None]
     avg_s = (sum(latencies) / len(latencies)) if latencies else None
     tokens = sum(r.total_tokens or 0 for r in rows)
-    return CategoryMetrics(total_runs=total, success_count=success, avg_latency_s=avg_s, total_tokens=tokens)
+    cost = sum(
+        (r.total_cost if r.total_cost is not None else (r.prompt_cost or 0) + (r.completion_cost or 0))
+        for r in rows
+    )
+    return CategoryMetrics(total_runs=total, success_count=success, avg_latency_s=avg_s, total_tokens=tokens, total_cost=cost)
 
 
 def get_runs_by_category(

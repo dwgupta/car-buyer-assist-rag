@@ -110,7 +110,11 @@ for cat_key, display_name in [
         continue
     success_pct = (100 * m.success_count / m.total_runs) if m.total_runs else 0
     avg_s = f"{m.avg_latency_s:.2f}s" if m.avg_latency_s is not None else "—"
-    st.markdown(f"**{display_name}:** {m.total_runs} runs, avg latency {avg_s}, success rate {success_pct:.0f}%, tokens {m.total_tokens or 0}")
+    line = f"**{display_name}:** {m.total_runs} runs, avg latency {avg_s}, success rate {success_pct:.0f}%, tokens {m.total_tokens or 0}"
+    if cat_key == CATEGORY_RAG_INVOKE:
+        cost_str = f"${m.total_cost:.4f}" if m.total_cost > 0 else "—"
+        line += f", total cost {cost_str}"
+    st.markdown(line)
 
 st.divider()
 
